@@ -1,0 +1,62 @@
+@import "../../styles/variables.scss";
+
+.toolbar {
+  height: $toolbar-height;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  box-shadow: 0 4px 5px gray;
+  z-index: 999;
+  column-gap: 10px;
+
+  &__color-input {
+    height: 25px;
+    width: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  &__btn {
+    height: 25px;
+    width: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    &_brush {
+      background: url(../../assets/img/brush.svg);
+      margin-left: 20px;
+    }
+
+    &_color {
+      background-image: url(../../assets/img/color.svg);
+    }
+    &_figure {
+      background-image: url(../../assets/img/figure.svg);
+    }
+    &_eraser {
+      background-image: url(../../assets/img/eraser.svg);
+    }
+    &_line {
+      background-image: url(../../assets/img/line.svg);
+    }
+
+    &_back {
+      margin-left: auto;
+      background-image: url(../../assets/img/back.svg);
+    }
+    &_next {
+      background-image: url(../../assets/img/next.svg);
+    }
+    &_save {
+      margin-right: 20px;
+      background-image: url(../../assets/img/save.svg);
+    }
+  }
+}
