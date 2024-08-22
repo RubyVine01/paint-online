@@ -3,6 +3,7 @@ import toolState from "../../store/toolState";
 import Brush from "../../tools/Brush";
 import Circle from "../../tools/Circle";
 import Eraser from "../../tools/Eraser";
+import Line from "../../tools/Line";
 import Rect from "../../tools/Rect";
 import "./Toolbar.scss";
 
@@ -25,7 +26,10 @@ const Toolbar = () => {
         className="toolbar__btn  toolbar__btn_eraser"
         onClick={() => toolState.setTool(new Eraser(canvasState.canvas))}
       ></button>
-      <button className="toolbar__btn  toolbar__btn_line"></button>
+      <button
+        className="toolbar__btn  toolbar__btn_line"
+        onClick={() => toolState.setTool(new Line(canvasState.canvas))}
+      ></button>
       <input className="toolbar__color-input" type="color" />
       <button className="toolbar__btn  toolbar__btn_back"></button>
       <button className="toolbar__btn  toolbar__btn_next"></button>
