@@ -30,9 +30,13 @@ const Toolbar = () => {
         className="toolbar__btn  toolbar__btn_line"
         onClick={() => toolState.setTool(new Line(canvasState.canvas))}
       ></button>
-      <input className="toolbar__color-input" type="color" />
-      <button className="toolbar__btn  toolbar__btn_back"></button>
-      <button className="toolbar__btn  toolbar__btn_next"></button>
+      <input
+        onChange={(e) => toolState.setFillColor(e.target.value)}
+        className="toolbar__color-input"
+        type="color"
+      />
+      <button className="toolbar__btn  toolbar__btn_undo"></button>
+      <button className="toolbar__btn  toolbar__btn_redo"></button>
       <button className="toolbar__btn  toolbar__btn_save"></button>
     </div>
   );

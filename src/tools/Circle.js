@@ -47,8 +47,8 @@ export default class Circle extends Tool {
       this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
       this.ctx.beginPath();
       this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
-      // this.ctx.fill();
+      this.ctx.fill();
       this.ctx.stroke();
-    };
+    }; 
   }
 }
