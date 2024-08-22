@@ -12,8 +12,8 @@ class CanvasState {
     makeAutoObservable(this);
   }
 
-  setSesstionId(id) {
-    this.sesstionId = id;
+  setSessionId(id) {
+    this.sessionId = id;
   }
   setSocket (socket) {
     this.socket = socket;

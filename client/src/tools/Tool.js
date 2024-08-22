@@ -1,8 +1,10 @@
 export default class Tool {
-  constructor(canvas) {
+  constructor(canvas, socket, id) {
     this.canvas = canvas;
+    this.socket = socket;
+    this.id = id;
     this.ctx = canvas.getContext("2d");
-    this.destroyEvent();
+    this.destroyEvents();
   }
 
   set fillColor(color) {
@@ -13,11 +15,11 @@ export default class Tool {
     this.ctx.strokeStyle = color;
   }
 
-  set lineWidth(width) { 
+  set lineWidth(width) {
     this.ctx.lineWidth = width;
   }
 
-  destroyEvent() {
+  destroyEvents() {
     this.canvas.onmousemove = null;
     this.canvas.onmousedown = null;
     this.canvas.onmouseup = null;

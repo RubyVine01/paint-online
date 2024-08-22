@@ -8,15 +8,15 @@ const PORT = process.env.PORT || 5001;
 app.ws("/", (ws, req) => {
   console.log("ПОДКЛЮЧЕНИЕ УСТАНОВЛЕНО ");
 
-  ws.send("Ты успешно подключился");
+  ws.send(JSON.stringify({ method: "notification", message: "Ты успешно подключился" }));
   ws.on("message", (msg) => {
     msg = JSON.parse(msg);
     switch (msg.method) {
       case "connection":
-        connectionHendler(ws, msg);
+        connectionHandler(ws, msg);
         break;
-        case "draw":
-        connectionHendler(ws, msg);
+      case "draw":
+        broadcastConnection(ws, msg);
         break;
     }
   });
@@ -24,7 +24,7 @@ app.ws("/", (ws, req) => {
 
 app.listen(PORT, () => console.log(`server started on PORT ${PORT}`));
 
-const connectionHendler = (ws, msg) => {
+const connectionHandler = (ws, msg) => {
   ws.id = msg.id;
   broadcastConnection(ws, msg);
 };
