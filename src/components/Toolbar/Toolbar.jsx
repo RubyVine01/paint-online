@@ -35,8 +35,12 @@ const Toolbar = () => {
         className="toolbar__color-input"
         type="color"
       />
-      <button className="toolbar__btn  toolbar__btn_undo"></button>
-      <button className="toolbar__btn  toolbar__btn_redo"></button>
+      <button
+        className="toolbar__btn  toolbar__btn_undo"
+        onClick={() => canvasState.undo()}
+      ></button>
+      <button className="toolbar__btn  toolbar__btn_redo"
+      onClick={() => canvasState.redo()}></button>
       <button className="toolbar__btn  toolbar__btn_save"></button>
     </div>
   );
