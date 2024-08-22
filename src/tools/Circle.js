@@ -27,21 +27,27 @@ export default class Circle extends Tool {
     if (this.mouseDown) {
       let currentX = e.pageX - e.target.offsetLeft;
       let currentY = e.pageY - e.target.offsetTop;
-      let width = currentX - this.startX;
-      let height = currentY - this.startY;
-      this.draw(this.startX, this.startY, width, height);
+      let centerX = (this.startX + currentX) / 2;
+      let centerY = (this.startY + currentY) / 2;
+      let radius =
+        Math.sqrt(
+          Math.pow(currentX - this.startX, 2) +
+            Math.pow(currentY - this.startY, 2)
+        ) / 2;
+
+      this.draw(centerX, centerY, radius);
     }
   }
 
-  draw(x, y, w, h) {
+  draw(x, y, radius) {
     const img = new Image();
     img.src = this.saved;
     img.onload = () => {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.ctx.drawImage(img, 0, 0, this.canvas.width, this.canvas.height);
       this.ctx.beginPath();
-      this.ctx.rect(x, y, w, h);
-      this.ctx.fill();
+      this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
+      // this.ctx.fill();
       this.ctx.stroke();
     };
   }
