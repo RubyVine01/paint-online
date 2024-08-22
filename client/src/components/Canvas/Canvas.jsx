@@ -5,6 +5,7 @@ import canvasState from "../../store/canvasState";
 import { useRef } from "react";
 import toolState from "../../store/toolState";
 import Brush from "../../tools/Brush";
+import Rect from "../../tools/Rect";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -54,10 +55,16 @@ const Canvas = observer(() => {
 
   const drawHandler = (msg) => {
     const figure = msg.figure;
-    const ctx = canvasRef.current.getContext('2d');
+    const ctx = canvasRef.current.getContext("2d");
     switch (figure.type) {
       case "brush":
         Brush.draw(ctx, figure.x, figure.y);
+        break;
+      case "rect":
+        Rect.staticDraw(ctx, figure.x, figure.y, figure.width, figure.height, figure.color);
+        break;
+      case "finish":
+        ctx.beingPath();
         break;
     }
   };

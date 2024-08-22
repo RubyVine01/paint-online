@@ -12,11 +12,27 @@ const Toolbar = () => {
     <div className="toolbar">
       <button
         className="toolbar__btn toolbar__btn_brush"
-        onClick={() => toolState.setTool(new Brush(canvasState.canvas))}
+        onClick={() =>
+          toolState.setTool(
+            new Brush(
+              canvasState.canvas,
+              canvasState.socket,
+              canvasState.sessionId
+            )
+          )
+        }
       ></button>
       <button
         className="toolbar__btn  toolbar__btn_rect"
-        onClick={() => toolState.setTool(new Rect(canvasState.canvas))}
+        onClick={() =>
+          toolState.setTool(
+            new Rect(
+              canvasState.canvas,
+              canvasState.socket,
+              canvasState.sessionId
+            )
+          )
+        }
       ></button>
       <button
         className="toolbar__btn  toolbar__btn_circle"
@@ -39,8 +55,10 @@ const Toolbar = () => {
         className="toolbar__btn  toolbar__btn_undo"
         onClick={() => canvasState.undo()}
       ></button>
-      <button className="toolbar__btn  toolbar__btn_redo"
-      onClick={() => canvasState.redo()}></button>
+      <button
+        className="toolbar__btn  toolbar__btn_redo"
+        onClick={() => canvasState.redo()}
+      ></button>
       <button className="toolbar__btn  toolbar__btn_save"></button>
     </div>
   );
