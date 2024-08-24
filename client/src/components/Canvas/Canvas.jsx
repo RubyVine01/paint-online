@@ -10,6 +10,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const Canvas = observer(() => {
   const canvasRef = useRef();
@@ -20,6 +21,28 @@ const Canvas = observer(() => {
 
   useEffect(() => {
     canvasState.setCanvas(canvasRef.current);
+    let ctx = canvasRef.current.getContext("2d");
+    axios
+      .get(`http://localhost:5001/image?id=${params.id}`)
+      .then((response) => {
+        const img = new Image();
+        img.src = response.data;
+        img.onload = () => {
+          ctx.clearRect(
+            0,
+            0,
+            canvasRef.current.width,
+            canvasRef.current.height
+          );
+          ctx.drawImage(
+            img,
+            0,
+            0,
+            canvasRef.current.width,
+            canvasRef.current.height
+          );
+        };
+      });
   }, []);
 
   useEffect(() => {
@@ -80,6 +103,11 @@ const Canvas = observer(() => {
 
   const mouseDownHandler = () => {
     canvasState.pushToUndo(canvasRef.current.toDataURL());
+    axios
+      .post(`http://localhost:5001/image?id=${params.id}`, {
+        img: canvasRef.current.toDataURL(),
+      })
+      .then((response) => console.log(response.data));
   };
 
   const connectHandler = () => {

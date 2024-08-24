@@ -8,6 +8,17 @@ import Rect from "../../tools/Rect";
 import "./Toolbar.scss";
 
 const Toolbar = () => {
+  const download = () => {
+    const dataUrl = canvasState.canvas.toDataURL();
+    console.log(dataUrl);
+    const a = document.createElement("a");
+    a.href = dataUrl;
+    a.download = canvasState.sessionId + ".jpg";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+
   return (
     <div className="toolbar">
       <button
@@ -59,7 +70,10 @@ const Toolbar = () => {
         className="toolbar__btn  toolbar__btn_redo"
         onClick={() => canvasState.redo()}
       ></button>
-      <button className="toolbar__btn  toolbar__btn_save"></button>
+      <button
+        className="toolbar__btn  toolbar__btn_save"
+        onClick={() => download()}
+      ></button>
     </div>
   );
 };
